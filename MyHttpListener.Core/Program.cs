@@ -6,24 +6,38 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Net;
 using System.IO;
+using MyHttpListener.Core.Common;
 
 namespace MyHttpListener.Core
 {
     class Program
     {
+        static BasePipe _entrancePipe;
+
         static void Main(string[] args)
         {
+            //调用开发者批量注册的管道
+            PipeConfig.Register();
+            //注册最后一个WebPipe管道
+            PipeBuilder.Bind(typeof(WebPipe));
+            //创建管道
+            _entrancePipe = PipeBuilder.Build();
+
+            //基于HttpListener的web容器，实际也是依赖于http.sys来监听当前服务器的所有http请求
             HttpListener httpListener = new HttpListener();
             List<string> prefixList = new List<string>() {
-                "http://localhost:12001/",
-                "http://localhost:12002/",
-                "http://localhost:12003/"
+                "http://localhost:20001/",
+                "http://localhost:20002/",
+                "http://localhost:20003/"
             };
+
             prefixList.ForEach(prefix =>
             {
                 httpListener.Prefixes.Add(prefix);
             });
+
             httpListener.Start();
+
             Console.WriteLine("HttpListener is started...");
 
             while (true)
@@ -38,16 +52,7 @@ namespace MyHttpListener.Core
         static void ProcessRequest(object state)
         {
             HttpListenerContext context = state as HttpListenerContext;
-            HttpListenerRequest request = context.Request;
-            HttpListenerResponse response = context.Response;
-
-            string json = @"{""title"":""test"",""id"":1,""time"":""" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + @"""}";
-
-            response.ContentType = "application/json";
-            using (StreamWriter writer = new StreamWriter(response.OutputStream))
-            {
-                writer.Write(json);
-            }
+            _entrancePipe.Process(context);
         }
     }
 }
