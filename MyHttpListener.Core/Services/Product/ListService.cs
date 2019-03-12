@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace MyHttpListener.Core.Services.Product
 {
-    public class ListService : BaseService<ListServiceResponse>
+    public class ListService : BaseService<ListServiceRequest, ListServiceResponse>
     {
-        public override ListServiceResponse Process(BaseRequest<ListServiceResponse> model)
+        public override ListServiceResponse Process(ListServiceRequest model)
         {
             //throw new NotImplementedException();
-            return new ListServiceResponse();
+            return new ListServiceResponse()
+            {
+                ReturnData = model
+            };
         }
     }
 }

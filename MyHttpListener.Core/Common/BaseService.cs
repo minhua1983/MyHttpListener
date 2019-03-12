@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyHttpListener.Core.Common
 {
-    public abstract class BaseService<TResponse> where TResponse : BaseResponse
+    public abstract class BaseService<TRequest, TResponse>
+        where TRequest : BaseRequest<TResponse>
+        where TResponse : BaseResponse
     {
-        public abstract TResponse Process(BaseRequest<TResponse> model);
+        public abstract TResponse Process(TRequest model);
     }
 }
