@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyHttpListener.Core.Common
 {
-    public interface IPipe
+    public interface IPipeline
     {
         void Process(HttpListenerContext context);
     }

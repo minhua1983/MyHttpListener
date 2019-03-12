@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace MyHttpListener.Core.Pipes
 {
-    public class ModelValidPipe : BasePipe
+    public class ModelValidPipeline : BasePipeline
     {
-        public ModelValidPipe(BasePipe basePipe) : base(basePipe)
+        public ModelValidPipeline(BasePipeline basePipeline) : base(basePipeline)
         {
 
         }
 
         public override void Process(HttpListenerContext context)
         {
-            NextPipe.Process(context);
+            NextPipeline.Process(context);
         }
     }
 }

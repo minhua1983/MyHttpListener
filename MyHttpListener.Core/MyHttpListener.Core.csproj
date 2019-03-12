@@ -61,18 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\BasePipe.cs" />
+    <Compile Include="Common\BasePipeline.cs" />
     <Compile Include="Common\BaseRequest.cs" />
     <Compile Include="Common\BaseResponse.cs" />
     <Compile Include="Common\BaseService.cs" />
-    <Compile Include="Common\IPipe.cs" />
+    <Compile Include="Common\IPipeline.cs" />
     <Compile Include="Models\Product\ListServiceRequest.cs" />
     <Compile Include="Models\Product\ListServiceResponse.cs" />
-    <Compile Include="PipeBuilder.cs" />
-    <Compile Include="Common\WebPipe.cs" />
-    <Compile Include="PipeConfig.cs" />
-    <Compile Include="Pipes\ModelValidPipe.cs" />
-    <Compile Include="Pipes\AuthenticationPipe.cs" />
+    <Compile Include="PipelineBuilder.cs" />
+    <Compile Include="Common\WebPipeline.cs" />
+    <Compile Include="PipelineConfig.cs" />
+    <Compile Include="Pipes\ModelValidPipeline.cs" />
+    <Compile Include="Pipes\AuthenticationPipeline.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Product\ListService.cs" />

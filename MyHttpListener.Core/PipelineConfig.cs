@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace MyHttpListener.Core
 {
-    public class PipeConfig
+    public class PipelineConfig
     {
+        /// <summary>
+        /// 注册自定义管道
+        /// </summary>
         public static void Register()
         {
-            PipeBuilder.Bind(typeof(AuthenticationPipe));
-            PipeBuilder.Bind(typeof(ModelValidPipe));
+            PipelineBuilder.Bind<AuthenticationPipeline>();
+            PipelineBuilder.Bind<ModelValidPipeline>();
         }
     }
 }

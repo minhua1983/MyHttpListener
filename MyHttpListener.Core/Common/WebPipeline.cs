@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace MyHttpListener.Core.Common
 {
-    public class WebPipe : BasePipe
+    public class WebPipeline : BasePipeline
     {
-        public WebPipe(BasePipe nextPipe) : base(nextPipe)
+        public WebPipeline(BasePipeline nextPipeline) : base(nextPipeline)
         {
 
         }

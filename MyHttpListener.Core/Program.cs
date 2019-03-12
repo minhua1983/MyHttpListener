@@ -12,16 +12,16 @@ namespace MyHttpListener.Core
 {
     class Program
     {
-        static BasePipe _entrancePipe;
+        static BasePipeline _entrancePipeline;
 
         static void Main(string[] args)
         {
             //调用开发者批量注册的管道
-            PipeConfig.Register();
+            PipelineConfig.Register();
             //注册最后一个WebPipe管道
-            PipeBuilder.Bind(typeof(WebPipe));
+            PipelineBuilder.Bind<WebPipeline>();
             //创建管道
-            _entrancePipe = PipeBuilder.Build();
+            _entrancePipeline = PipelineBuilder.Build();
 
             //基于HttpListener的web容器，实际也是依赖于http.sys来监听当前服务器的所有http请求
             HttpListener httpListener = new HttpListener();
@@ -52,7 +52,7 @@ namespace MyHttpListener.Core
         static void ProcessRequest(object state)
         {
             HttpListenerContext context = state as HttpListenerContext;
-            _entrancePipe.Process(context);
+            _entrancePipeline.Process(context);
         }
     }
 }
