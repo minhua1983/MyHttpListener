@@ -17,7 +17,7 @@ namespace MyHttpListener.Core.Common
 
         }
 
-        public override void Process(HttpListenerContext context)
+        protected override void InnerProcess(HttpListenerContext context)
         {
             //作为整个管道的最后一步，则自己处理请求
             object returnObject;
@@ -50,13 +50,26 @@ namespace MyHttpListener.Core.Common
                     //获取参数类型
                     Type parameterType = parameterInfo.ParameterType;
                     //读取请求体的内容
-                    string requestBody = "";
-                    using (StreamReader reader = new StreamReader(request.InputStream))
+                    string requestParameter = "";
+                    if (request.HttpMethod.ToUpper() == "POST")
                     {
-                        requestBody = reader.ReadToEnd();
+                        using (StreamReader reader = new StreamReader(request.InputStream))
+                        {
+                            requestParameter = reader.ReadToEnd();
+                        }
+                    }
+                    else
+                    {
+                        //string querystring = request.QueryString;
+                        Dictionary<string, object> dictionary = new Dictionary<string, object>();
+                        foreach (string key in request.QueryString.Keys)
+                        {
+                            dictionary.Add(key, request.QueryString[key]);
+                        }
+                        requestParameter = JsonConvert.SerializeObject(dictionary);
                     }
                     //序列化成方法的参数实例
-                    object parameter = JsonConvert.DeserializeObject(requestBody, parameterType);
+                    object parameter = JsonConvert.DeserializeObject(requestParameter, parameterType);
                     //执行方法并返回对象
                     returnObject = methodInfo.Invoke(service, new object[] { parameter });
                 }

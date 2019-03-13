@@ -15,7 +15,7 @@ namespace MyHttpListener.Core.Pipes
 
         }
 
-        public override void Process(HttpListenerContext context)
+        protected override void InnerProcess(HttpListenerContext context)
         {
             NextPipeline.Process(context);
         }
