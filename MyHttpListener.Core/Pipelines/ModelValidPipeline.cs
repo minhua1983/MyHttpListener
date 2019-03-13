@@ -6,11 +6,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyHttpListener.Core.Pipes
+namespace MyHttpListener.Core.Pipelines
 {
-    public class AuthenticationPipeline : BasePipeline
+    public class ModelValidPipeline : BasePipeline
     {
-        public AuthenticationPipeline(BasePipeline basePipeline) : base(basePipeline)
+        public ModelValidPipeline(BasePipeline basePipeline) : base(basePipeline)
         {
 
         }

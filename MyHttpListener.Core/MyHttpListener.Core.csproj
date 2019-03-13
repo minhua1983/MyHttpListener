@@ -71,8 +71,8 @@
     <Compile Include="PipelineBuilder.cs" />
     <Compile Include="Common\WebPipeline.cs" />
     <Compile Include="PipelineConfig.cs" />
-    <Compile Include="Pipes\ModelValidPipeline.cs" />
-    <Compile Include="Pipes\AuthenticationPipeline.cs" />
+    <Compile Include="Pipelines\ModelValidPipeline.cs" />
+    <Compile Include="Pipelines\AuthenticationPipeline.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Product\ListService.cs" />
