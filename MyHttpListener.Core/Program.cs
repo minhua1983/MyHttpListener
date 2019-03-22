@@ -26,9 +26,9 @@ namespace MyHttpListener.Core
             //基于HttpListener的web容器，实际也是依赖于http.sys来监听当前服务器的所有http请求
             HttpListener httpListener = new HttpListener();
             List<string> prefixList = new List<string>() {
-                "http://localhost:20001/",
-                "http://localhost:20002/",
-                "http://localhost:20003/"
+                "http://127.0.0.1:20001/",
+                "http://127.0.0.1:20002/",
+                "http://127.0.0.1:20003/"
             };
 
             prefixList.ForEach(prefix =>
